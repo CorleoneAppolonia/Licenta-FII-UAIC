@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ProxyLogViewer } from '../components/ProxyLogViewer';
+import { DecryptionTool } from '../components/DecryptionTool';
 import { useAuth } from '../context/AuthContext';
 
 export function ProxyPage() {
@@ -18,6 +19,7 @@ export function ProxyPage() {
         </div>
       </header>
       <main className="proxy-page">
+        <DecryptionTool />
         <ProxyLogViewer />
       </main>
     </div>

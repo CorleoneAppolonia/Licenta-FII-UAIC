@@ -99,6 +99,8 @@ def relay(prefix: str, subpath: str = ''):
     normalized = subpath.strip('/')
     backend_path = f"/api/{prefix}/{normalized}/" if normalized else f"/api/{prefix}/"
     frontend_path = f"/{prefix}/{normalized}/" if normalized else f"/{prefix}/"
+    if request.method == 'OPTIONS':
+        return '', 204
     payload = extract_payload()
     status_code, response_data, has_json = forward_request(
         request.method,

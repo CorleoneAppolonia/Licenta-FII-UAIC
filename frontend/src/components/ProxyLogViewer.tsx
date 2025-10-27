@@ -23,8 +23,6 @@ export function ProxyLogViewer() {
 
   useEffect(() => {
     loadLogs();
-    const interval = window.setInterval(loadLogs, 5000);
-    return () => window.clearInterval(interval);
   }, []);
 
   const handleClear = async () => {
