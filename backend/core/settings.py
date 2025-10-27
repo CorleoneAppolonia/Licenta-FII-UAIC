@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'accounts',
     'friendships',
     'messaging',
-    'configuration',
+    'encryption',
 ]
 
 MIDDLEWARE = [

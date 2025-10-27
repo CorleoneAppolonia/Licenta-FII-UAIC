@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db import models
 
+from encryption.models import EncryptionSetting
+
 User = settings.AUTH_USER_MODEL
 
 
@@ -36,8 +38,11 @@ class Message(models.Model):
 	conversation = models.ForeignKey(Conversation, related_name='messages', on_delete=models.CASCADE)
 	sender = models.ForeignKey(User, related_name='messages_sent', on_delete=models.CASCADE)
 	content = models.TextField()
-	ciphertext = models.TextField(blank=True, null=True)
-	encryption_mode = models.CharField(max_length=64, default='plaintext')
+	encryption_type = models.CharField(
+		max_length=32,
+		choices=EncryptionSetting.EncryptionMode.choices,
+		default=EncryptionSetting.EncryptionMode.PLAINTEXT,
+	)
 	created_at = models.DateTimeField(auto_now_add=True)
 
 	class Meta:

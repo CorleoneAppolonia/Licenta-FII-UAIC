@@ -1,7 +1,6 @@
 import type { ProxyLogEntry } from '../types';
 
-export const API_BASE = import.meta.env.VITE_PROXY_URL ?? 'http://localhost:5000';
-export const BACKEND_BASE = import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:8000';
+const API_BASE = import.meta.env.VITE_PROXY_URL ?? 'http://localhost:5000';
 
 export class ApiError extends Error {
   status: number;

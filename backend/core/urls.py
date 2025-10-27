@@ -22,5 +22,6 @@ urlpatterns = [
     path('api/auth/', include('accounts.urls')),
     path('api/friends/', include('friendships.urls')),
     path('api/messages/', include('messaging.urls')),
-    path('api/config/', include('configuration.urls')),
+    path('api/encryption/', include('encryption.public_urls')),
+    path('api/admin/', include('encryption.urls')),
 ]

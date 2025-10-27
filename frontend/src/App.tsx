@@ -1,11 +1,11 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { useAuth } from './context/AuthContext'
+import { AdminPage } from './pages/AdminPage'
 import { DashboardPage } from './pages/DashboardPage'
 import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
 import { ProxyPage } from './pages/ProxyPage'
-import { AdminPage } from './pages/AdminPage'
 
 function App() {
   const { user, loading } = useAuth()
@@ -25,10 +25,7 @@ function App() {
         <>
           <Route path="/" element={<DashboardPage />} />
           <Route path="/proxy" element={<ProxyPage />} />
-          <Route
-            path="/admin"
-            element={user.is_staff ? <AdminPage /> : <Navigate to="/" replace />}
-          />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </>
       ) : (

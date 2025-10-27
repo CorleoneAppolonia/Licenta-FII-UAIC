@@ -27,22 +27,19 @@ export interface Message {
   id: number;
   sender: User;
   content: string;
-  ciphertext: string | null;
-  encryption_mode: string;
+  encryption_type: EncryptionMode;
   created_at: string;
 }
 
-export interface EncryptionModeOption {
-  id: string;
-  label: string;
-  description?: string | null;
-}
+export type EncryptionMode =
+  | 'PLAINTEXT'
+  | 'WEAK_XOR'
+  | 'END_TO_END'
+  | 'END_TO_END_STEGO';
 
-export interface EncryptionStatus {
-  mode: string;
-  label: string;
+export interface EncryptionSetting {
+  mode: EncryptionMode;
   updated_at: string;
-  available_modes: EncryptionModeOption[];
 }
 
 export interface ProxyLogEntry {

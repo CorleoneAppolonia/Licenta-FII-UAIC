@@ -1,12 +1,25 @@
-import { AppShell } from '../components/AppShell';
+import { Link } from 'react-router-dom';
 import { ProxyLogViewer } from '../components/ProxyLogViewer';
-import { EncryptionStatusCard } from '../components/EncryptionStatusCard';
+import { useAuth } from '../context/AuthContext';
 
 export function ProxyPage() {
+  const { user, logout } = useAuth();
+
   return (
-    <AppShell title="Proxy Monitor" contentClassName="single-column">
-      <EncryptionStatusCard />
-      <ProxyLogViewer />
-    </AppShell>
+    <div className="dashboard">
+      <header className="dashboard-header">
+        <h1>Proxy Traffic</h1>
+        <div className="user-info">
+          <Link className="secondary" to="/">
+            Back to chat
+          </Link>
+          <span>Signed in as {user?.username}</span>
+          <button onClick={logout}>Log out</button>
+        </div>
+      </header>
+      <main className="proxy-page">
+        <ProxyLogViewer />
+      </main>
+    </div>
   );
 }

@@ -75,17 +75,8 @@ export function ChatWindow({ friend }: Props) {
                 <div className="message-meta">
                   <span className="sender">{message.sender.username}</span>
                   <time>{new Date(message.created_at).toLocaleTimeString()}</time>
-                  <span className="message-mode" title={`Stored as ${message.encryption_mode}`}>
-                    {message.encryption_mode.replace(/_/g, ' ')}
-                  </span>
                 </div>
                 <p>{message.content}</p>
-                {message.ciphertext && (
-                  <details className="ciphertext-details">
-                    <summary>Ciphertext</summary>
-                    <code>{message.ciphertext}</code>
-                  </details>
-                )}
               </div>
             ))}
             <div ref={messagesEndRef} />

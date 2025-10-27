@@ -3,8 +3,8 @@ from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from configuration.services import get_active_strategy
 from friendships.models import Friendship
+from encryption.services import get_current_mode
 from .models import Conversation, Message
 from .serializers import MessageCreateSerializer, MessageSerializer
 
@@ -54,20 +54,11 @@ class MessageThreadView(AuthenticatedAPIView):
 		serializer = MessageCreateSerializer(data=request.data)
 		serializer.is_valid(raise_exception=True)
 
-		strategy = get_active_strategy()
-		incoming_content = serializer.validated_data['content']
-		try:
-			plaintext = strategy.decrypt(incoming_content)
-		except ValueError:
-			return Response({'detail': 'Invalid payload for current encryption mode.'}, status=status.HTTP_400_BAD_REQUEST)
-		ciphertext = None if strategy.id == 'plaintext' else incoming_content
-
 		conversation, _ = Conversation.get_or_create_between(request.user, target)
 		message = Message.objects.create(
 			conversation=conversation,
 			sender=request.user,
-			content=plaintext,
-			ciphertext=ciphertext,
-			encryption_mode=strategy.id,
+			content=serializer.validated_data['content'],
+			encryption_type=get_current_mode(),
 		)
 		return Response(MessageSerializer(message).data, status=status.HTTP_201_CREATED)

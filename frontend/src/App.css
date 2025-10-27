@@ -41,49 +41,26 @@
   font-size: 1.8rem;
 }
 
-.header-left {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.main-nav a {
-  color: #1e293b;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 0.15rem 0.45rem;
-  border-radius: 6px;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.main-nav a:hover {
-  background-color: rgba(37, 99, 235, 0.12);
-}
-
-.main-nav a.active {
-  background-color: #e0e7ff;
-  color: #1d4ed8;
-}
-
-.encryption-chip {
-  font-size: 0.85rem;
-  background-color: #0f172a;
-  color: #f8fafc;
-  padding: 0.2rem 0.55rem;
-  border-radius: 999px;
-  align-self: flex-start;
-}
-
 .user-info {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.user-info .secondary {
+  border-radius: 6px;
+  border: 1px solid #2563eb;
+  background-color: transparent;
+  color: #2563eb;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.user-info .secondary:hover {
+  background-color: rgba(37, 99, 235, 0.08);
+  color: #1d4ed8;
 }
 
 .user-info button,
@@ -136,49 +113,6 @@
 
 .panel h4 {
   margin-bottom: 0.5rem;
-}
-
-.encryption-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.encryption-options {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  margin-top: 0.5rem;
-}
-
-.encryption-option {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.6rem 0.7rem;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.encryption-option.active {
-  border-color: #2563eb;
-  background-color: #eff6ff;
-}
-
-.encryption-option input[type='radio'] {
-  margin-top: 0.35rem;
-}
-
-.option-label {
-  font-weight: 600;
-  color: #1e293b;
-}
-
-.option-description {
-  margin: 0.2rem 0 0;
-  color: #475569;
-  font-size: 0.85rem;
 }
 
 .friend-request-form {
@@ -285,16 +219,6 @@
   color: #475569;
 }
 
-.message-mode {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  background-color: #cbd5f5;
-  color: #1e293b;
-  padding: 0.1rem 0.35rem;
-  border-radius: 999px;
-}
-
 .message-input {
   display: flex;
   gap: 0.75rem;
@@ -304,25 +228,23 @@
   resize: none;
 }
 
-.ciphertext-details {
-  margin-top: 0.5rem;
+.proxy-page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 180px);
 }
 
-.ciphertext-details code {
-  display: inline-block;
-  word-break: break-all;
+.proxy-log {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .proxy-log .log-entries {
-  max-height: 260px;
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
   margin-top: 1rem;
-}
-
-.single-column {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
 }
 
 .proxy-log ul {
@@ -428,15 +350,6 @@
     grid-template-columns: 1fr;
   }
 
-  .main-nav {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .header-left {
-    align-items: flex-start;
-  }
-
   .sidebar,
   .main-area {
     order: unset;
@@ -456,10 +369,6 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
-  }
-
-  .header-left {
-    width: 100%;
   }
 
   .friend-request-form {

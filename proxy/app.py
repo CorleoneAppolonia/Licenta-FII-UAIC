@@ -131,10 +131,16 @@ def proxy_messages(subpath: str):
     return relay('messages', subpath)
 
 
-@app.route('/config/', defaults={'subpath': ''}, methods=['GET', 'POST'])
-@app.route('/config/<path:subpath>', methods=['GET', 'POST', 'PATCH', 'PUT', 'DELETE'])
-def proxy_config(subpath: str):
-    return relay('config', subpath)
+@app.route('/encryption/', defaults={'subpath': ''}, methods=['GET'])
+@app.route('/encryption/<path:subpath>', methods=['GET'])
+def proxy_encryption(subpath: str):
+    return relay('encryption', subpath)
+
+
+@app.route('/admin/', defaults={'subpath': ''}, methods=['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'])
+@app.route('/admin/<path:subpath>', methods=['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'])
+def proxy_admin(subpath: str):
+    return relay('admin', subpath)
 
 
 @app.route('/logs/', methods=['GET', 'DELETE'])
